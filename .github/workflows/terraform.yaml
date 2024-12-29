@@ -12,8 +12,8 @@ jobs:
     env:   
       ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }} 
       ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }} 
-      ARM_TENANT_ID: ${{ env.TENANT_ID }} 
-      ARM_SUBSCRIPTION_ID: ${{ env.SUB_ID }} 
+      ARM_TENANT_ID: ${{ vars.TENANT_ID }} 
+      ARM_SUBSCRIPTION_ID: ${{ vars.SUB_ID }} 
 
       
 
