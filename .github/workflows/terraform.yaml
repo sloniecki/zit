@@ -1,0 +1,39 @@
+name: Terraform Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    env:   
+      ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }} 
+      ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }} 
+      ARM_TENANT_ID: ${{ env.TENANT_ID }} 
+      ARM_SUBSCRIPTION_ID: ${{ env.SUB_ID }} 
+
+      
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
