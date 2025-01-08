@@ -1,5 +1,5 @@
-module "aplication" {
+module "aplication1" {
     source = "./aplication-module"
-    project-name = "aplikacja1"
+    project-name = "testowa1"
   
 }
